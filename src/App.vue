@@ -1,41 +1,31 @@
 <template>
-    <!-- <item-details :item="item"></item-details> -->
-    <item-list :items="items" @deleted="removeItem"></item-list>
+    <nav>
+        <!-- use the router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
+        <router-link to="/">items</router-link>
+        <router-link to="/userList">Users</router-link>
+        <router-link to="/reviewList">reviews</router-link>
+
+    </nav>
+    <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
 </template>
 <script>
-const API_URL = "http://localhost:8080/items"
-
-import itemDetails from "./components/itemDetails.vue"
-import itemList from "./components/itemList.vue"
-
+import { RouterLink, RouterView } from 'vue-router';
 export default {
     components:{
-        itemDetails,
-        itemList
+        RouterLink,
+        RouterView
     },
     data() {
-        return {
-            msg: "Hello World",
-            id:3,
-            item: {
-                name:"test",
-                description:"test",
-                price:0
-            },
-            items: []
-        }
-    },
-    created() {
-        this.fetchData()
-    },
-    methods: {
-        async fetchData() {
-            const url = `${API_URL}`
-            this.items = await (await fetch(url)).json()
-        },
-        removeItem(id) {
-            this.items.splice(this.items.map(i => i.id).indexOf(id), 1)
-        }
+        return {}
     }
 }
 </script>
+<style>
+nav a{
+    margin-left: 1rem;
+}
+</style>

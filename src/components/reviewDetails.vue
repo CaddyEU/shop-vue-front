@@ -5,7 +5,7 @@
             <li>               
                 Review time: {{ currentReview.reviewTime }} <br>
                 User: {{ currentReview.user.UserName }} <br>
-                Item: {{ currentReview.item.ItemName }} <br>
+                Item: {{ currentReview.item.name }} <br>
                 Review: {{ currentReview.review.reviewBody }}<hr>
             </li>
         </ul>
@@ -27,7 +27,7 @@ export default {
                     UserName: "" 
                 }, 
                 item: {
-                    ItemName: ""
+                    name: ""
                 }, 
                 review: {
                     reviewBody: ""

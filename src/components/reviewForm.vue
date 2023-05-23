@@ -23,9 +23,9 @@
         </label>
         <label>
             Item:
-            <select v-model="review.reviewId">
+            <select v-model="review.ItemId">
               <option disabled value="0">Choose item</option>
-              <option v-for ="item in items" :value= "item.ItemId">{{ item.ItemName }}</option>
+              <option v-for ="item in items" :value= "item.id">{{ item.name }}</option>
             </select>
         </label>
         <button type="submit">Add review</button>
@@ -41,7 +41,8 @@ export default {
   data() {
     return {
       review: {
-        reviewId: "",
+        reviewBody: "",
+        reviewDate: "",
         UserId: 0,
         ItemId: 0,
     },

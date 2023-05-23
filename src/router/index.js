@@ -10,7 +10,7 @@ import { createRouter, createWebHistory } from "vue-router"
         },
         {
           path: "/userList",
-          name: "userList",
+          name: "users",
           component: () => import("../views/userListView.vue")
         },
         {
@@ -20,7 +20,7 @@ import { createRouter, createWebHistory } from "vue-router"
         },
         {
           path: "/reviewList",
-          name: "reviewList",
+          name: "reviews",
           component: () => import("../views/reviewListView.vue")
         },
     ],

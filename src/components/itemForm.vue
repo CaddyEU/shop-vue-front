@@ -34,8 +34,13 @@ export default {
                 description: "",
                 posted: ""
             },
+            items: [],
             errors: null
         }
+    },
+    async created() {
+        this.items = await(await fetch("http://localhost:8080/items")).json()
+        this.bargers
     },
     computed: {
         canSubmit() {
