@@ -26,6 +26,7 @@
 
 
 export default {
+    emits:["submit"],
     data() {
         return {
             item: {
@@ -64,6 +65,7 @@ export default {
                     throw data.error                    
                 } else {
                     this.item = {name: "",category: "",description: "",posted: ""}
+                    this.$emit("submit")
                 }
             })
             .catch(error => console.log("Error:",error))

@@ -5,20 +5,20 @@
             <th></th>
             <th></th>
         </tr>
-        <tr v-for="review in reviews" :key="review.reviewId">
+        <tr v-for="review in reviews" :key="review.id">
             <td class="table td">{{ review.reviewDate }}</td>           
             <td class="table td">
-                <button id="show-details-modal" @click="reviewDetailId = review.reviewId">Details</button>
+                <button id="show-details-modal" @click="reviewDetailId = review.id">Details</button>
             </td>
             <td class="table td">
-                <button id="show-delete-modal" @click="reviewDeleteId = review.reviewId">Delete</button>
+                <button id="show-delete-modal" @click="reviewDeleteId = review.id">Delete</button>
             </td>
         </tr>
     </table>
     <Teleport to="body">
     <!-- use the modal component, pass in the prop -->
     <modal :show="reviewDetailId !==0" @close="reviewDetailId = 0">
-        <template #header>{{ currentReview.reviewId }}</template>
+        <template #header>{{ currentReview.id }}</template>
         <template #body>
             <reviewDetails :review="currentReview"></reviewDetails>
         </template>
@@ -28,7 +28,7 @@
   <Teleport to="body">
     <!-- use the modal component, pass in the prop -->
     <modal :show="reviewDeleteId !== 0">
-      <template #header>Delete {{ currentReview.reviewId }}
+      <template #header>Delete {{ currentReview.id }}
       </template>
       <template #body>
         Are you sure?
@@ -76,11 +76,11 @@ import Modal from "./modal.vue"
         },
         watch: {
             reviewDetailId(newId, oldId) {
-                this.currentReview = this.reviews.find((item)=>item.reviewId ==newId);
-                console.log(this.currentReview)
+                this.currentReview = this.reviews.find((item)=>item.id == newId);
+                console.log("reviewList",this.currentReview)
             },
             reviewDeleteId(newId, oldId) { 
-                this.currentReview = this.reviews.find((item)=>item.reviewId ==newId);
+                this.currentReview = this.reviews.find((item)=>item.id ==newId);
                 this.error = null
             }
         },

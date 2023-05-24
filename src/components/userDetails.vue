@@ -28,7 +28,7 @@ export default {
     methods: {
         async fetchData() {
             const url = `${API_URL}`
-            this.currentUser = await (await fetch(url + "/" + this.user.UserId)).json()
+            if (this.User !==undefined) await (await fetch(url + "/" + this.user.id)).json()
         },
         formatDate(dateString) {
             return useDateFormating(dateString)

@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h1>Reviews: {{ currentReview.reviewId }}</h1>    
-         <ul>
-            <li>               
-                Review time: {{ currentReview.reviewTime }} <br>
-                User: {{ currentReview.user.UserName }} <br>
-                Item: {{ currentReview.item.name }} <br>
-                Review: {{ currentReview.review.reviewBody }}<hr>
+        <h1>Reviews: {{ currentReview.id }}</h1>
+        <ul>
+            <li>
+                Review time: {{ currentReview.reviewDate }} <br>
+                User: {{ currentReview.User.UserName }} <br>
+                Item: {{ currentReview.Item.name }} <br>
+                Review: {{ currentReview.reviewBody }}
+                <hr>
             </li>
         </ul>
     </div>
@@ -21,17 +22,16 @@ export default {
     },
     data() {
         return {
-            currentReview: { 
-                reviewId: "", 
-                user: {
-                    UserName: "" 
-                }, 
-                item: {
+            currentReview: {
+                id: "",
+                User: {
+                    UserName: ""
+                },
+                Item: {
                     name: ""
-                }, 
-                review: {
-                    reviewBody: ""
-                }
+                },
+                reviewBody: "",
+                reviewDate: ""
             }
         }
     },
@@ -41,8 +41,8 @@ export default {
     methods: {
         async fetchData() {
             const url = `${API_URL}`
-            this.currentReview = await (await fetch(url + "/" + this.review.reviewId)).json()
-            console.log("reviewDetails",this.currentReview );
+            this.currentReview = await (await fetch(url + "/" + this.review.id)).json()
+            console.log("reviewDetails", this.currentReview);
         },
         formatDate(dateString) {
             return useDateFormating(dateString)

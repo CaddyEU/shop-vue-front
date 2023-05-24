@@ -18,7 +18,7 @@
             User:
             <select v-model="review.UserId">
               <option disabled value="0">Choose user</option>
-              <option v-for ="user in users" :value="user.UserId">{{ user.UserName }}</option>
+              <option v-for ="user in users" :value="user.id">{{ user.UserName }}</option>
             </select>
         </label>
         <label>
@@ -37,7 +37,7 @@
 <script>
 
 export default {
-
+  emits:["submit"],
   data() {
     return {
       review: {
@@ -62,12 +62,12 @@ export default {
   },
   methods: {
     checkForm: function(e) {
-      if (this.UserId!=0 && this.ItemId!=0) {
+      if (this.UserName!=0 && this.ItemId!=0) {
         return true;
       }
       this.errors = [];
 
-      if (!this.UserId) {
+      if (!this.UserName) {
         this.errors.push('Please input user name.');
       }
       if (!this.ItemId) {
@@ -77,7 +77,7 @@ export default {
       e.preventDefault();
     },
     addReview() {
-      this.errors = null
+      this.errors = []
       const api_url = import.meta.env.VITE_API_URL
       //ToDo проверка на 0 при заполнении выпадающего списка
       fetch(api_url + "/reviews", {
